@@ -28,7 +28,7 @@ def create_reminder(task, priority, time_bound):
 def main():
     task, priority, time_bound = get_task()
     reminder = create_reminder(task, priority, time_bound)
-    print("\nReminder:", reminder)
+    print(f"Reminder:{task]", reminder)
 
 if __name__ == "__main__":
     main()
