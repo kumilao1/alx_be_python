@@ -1,35 +1,37 @@
-def main():
-    # Prompt the user to input a task description
-    task = input("Enter your task: ").strip()
+# daily_reminder.py
 
-    # Prompt the user to input the task's priority
-    priority = input("Priority (high/medium/low): ").strip().lower()
+def get_task():
+    task = input("Enter your task: ")
+    priority = input("Priority (high/medium/low): ").lower()
+    time_bound = input("Is it time-bound? (yes/no): ").lower()
+    return task, priority, time_bound
 
-    # Prompt the user to input if the task is time-bound
-    time_bound = input("Is it time-bound? (yes/no): ").strip().lower()
-
-    # Process the task based on priority using match-case statement
-    reminder_message = f"Reminder: '{task}' is a "
+def create_reminder(task, priority, time_bound):
+    reminder = ""
     match priority:
-        case 'high':
-            reminder_message += "high priority task"
-        case 'medium':
-            reminder_message += "medium priority task"
-        case 'low':
-            reminder_message += "low priority task"
+        case "high":
+            reminder = f"'{task}' is a high priority task"
+        case "medium":
+            reminder = f"'{task}' is a medium priority task"
+        case "low":
+            reminder = f"'{task}' is a low priority task"
         case _:
-            reminder_message += "task with unspecified priority"
-
-    # Modify the reminder if the task is time-bound
-    if time_bound == 'yes':
-        reminder_message += " that requires immediate attention today!"
+            reminder = f"'{task}' has an unknown priority level"
+    
+    if time_bound == "yes":
+        reminder += " that requires immediate attention today!"
     else:
-        reminder_message += ". Consider completing it when you have free time."
+        reminder += ". Consider completing it when you have free time."
+    
+    return reminder
 
-    # Print the customized reminder
-    print(reminder_message)
+def main():
+    task, priority, time_bound = get_task()
+    reminder = create_reminder(task, priority, time_bound)
+    print("\nReminder:", reminder)
 
 if __name__ == "__main__":
     main()
+
 
 
